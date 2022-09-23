@@ -2,9 +2,6 @@ from random import randint
 
 
 def guessComp(maxNum: int):
-    if maxNum < 0:
-        raise Exception("Invalid maximum number: Should not < 0.")
-
     randomInt = randint(0, maxNum)
     while True:
         userInput = input("\nGuess the number (e for exit): ")
@@ -13,7 +10,8 @@ def guessComp(maxNum: int):
             break
 
         if not userInput.isnumeric():
-            raise Exception("User input should be e or numeric.")
+            print("Invalid Input: User input should be e or numeric.")
+            continue
 
         userInputInt = int(userInput)
 
@@ -33,8 +31,8 @@ print()
 print("Let's start!")
 maxNum = input("Max range you want to play: ")
 
-if not maxNum.isnumeric():
-    raise Exception("Max num should be numeric.")
+if not maxNum.isnumeric() or int(maxNum) < 0:
+    raise Exception("Max num should be numeric and >= 0.")
 
 guessComp(int(maxNum))
 print()
